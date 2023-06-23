@@ -1,0 +1,164 @@
+\documentclass[review]{elsarticle}
+\usepackage{setspace}
+\usepackage{lineno}
+\usepackage{color}
+\usepackage[colorlinks, linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{subfigure}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{mathptmx}
+\usepackage{lineno,hyperref}
+\linenumbers
+\journal{Structural Safety}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Elsevier bibliography styles
+%%%%%%%%%%%%%%%%%%%%%%%
+%% To change the style, put a % in front of the second line of the current style and
+%% remove the % from the second line of the style you would like to use.
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Numbered
+\bibliographystyle{model1-num-names}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Modelling immediate post-earthquake transportation networks: an explicit approach}
+
+\author[add1]{Kairui Feng}
+\author[add2]{Cao Wang}
+\author[add1]{Quanwang Li\corref{mycorrespondingauthor}}
+
+\cortext[mycorrespondingauthor]{Corresponding author.}
+\ead{li\_quanwang@tsinghua.edu.cn}
+
+\address[add1]{Department of Civil Engineering, Tsinghua University, Beijing 100084, China}
+\address[add2]{School of Civil Engineering, The University of Sydney, Sydney, NSW 2006, Australia}
+
+\begin{abstract}
+This template helps you to create a properly formatted \LaTeX\ manuscript.
+\end{abstract}
+
+\begin{keyword}
+\texttt{elsarticle.cls}\sep \LaTeX\sep Elsevier \sep template
+\end{keyword}
+
+\end{frontmatter}
+
+\linenumbers
+
+\section{Introduction}
+
+\section{Methodology}
+The traffic condition immediately after an extreme hazardous event (e.g., an earthquake) may differ significantly from the daily traffic under normal condition. For examples, some drivers may immediately change their original destination to, for example, schools to pick up their children if an earthquake occurs, which would disrupt the normal equilibrium of the surface transportation system. Moreover, the panicking/irrational behaviour of some drivers may lead to a worse case as the \cite{Helbing2000Simulating}. As a result, the traffic modelling should take into account the difference between pre-hazard and post-hazard traffic scenarios.
+\par Prior to the occurrence of an earthquake, one can use; in this section, the major focus is on the modelling of post-earthquake traffic scenarios.
+\par We consider the irrational behaviour of car drivers on the road network in the post-earthquake traffic modelling. Mathematically, it follows
+\begin{equation}\label{eq xt}
+\mathbf{x}(t)=\mathbf{x}_{\rm{r}}(t)+\mathbf{x}_{\rm{ir}}(t)
+\end{equation}
+where $\mathbf{x}_{\rm{r}}(t)$ and $\mathbf{x}_{\rm{ir}}(t)$ are the vectors, respectively.  Taking the differential form of both sides of Eq.~\eqref{eq xt} gives
+\begin{equation}
+\frac{\rm{d}\mathbf{x}}{\rm{d}t} = \frac{\rm{d}\mathbf{x}_{\rm{r}}}{\rm{d}t} + \frac{\rm{d}\mathbf{x}_{\rm{ir}}}{\rm{d}t}
+\end{equation}
+%
+\begin{equation}
+\frac{\rm{d}\mathbf{x}_{\rm{r}}}{\rm{d}t} = \mathbf{v}_{\mathrm{r,in}} - \mathbf{v}_{\mathrm{r,out}} + \xi \mathbf{x}_{\rm{ir}}
+\end{equation}
+%
+\begin{equation}
+\frac{\rm{d}\mathbf{x}_{\rm{ir}}}{\rm{d}t} = \mathbf{v}_{\mathrm{ir,in}} - \mathbf{v}_{\mathrm{ir,out}} - \xi \mathbf{x}_{\rm{ir}}
+\end{equation}
+%
+The impedance function is defined as \cite{Branston1976Link}
+\begin{equation}\label{eq bpr}
+T_i(t)=\mathrm{BPR}[x_i(t-T_i(t))]=t_i\cdot\left[1+\alpha\left(\frac{x_i(t-T_i(t))}{n_i\cdot c_i}\right)^\beta\right]
+\end{equation}
+Taking the differential form of both sides of Eq.~\eqref{eq bpr} gives
+\begin{equation}
+T_i'=[\mathrm{BPR}(x_i(t-T_i))]' = \mathrm{BPR}'(x_i(t-T_i))\cdot x_i'(t-T_i)\cdot (1-T_i')
+\end{equation}
+which yields
+\begin{equation}
+T_i'=\frac{\mathrm{BPR}'(x_i(t-T_i))\cdot x_i'(t-T_i)}{1+\mathrm{BPR}'(x_i(t-T_i))\cdot x_i'(t-T_i)}
+\end{equation}
+
+For the $i$th road,
+\begin{equation}
+\mathrm{d}x_{\mathrm{out}}^{(i)} = x_{\mathrm{out}}^{(i)}(t+\mathrm{d}t)- x_{\mathrm{out}}^{(i)}(t) =
+                               x_{\mathrm{in}}^{(i)}(t+\mathrm{d}t-T_i(t+\mathrm{d}t)) - x_{\mathrm{in}}^{(i)}(t - T_i(t))
+\end{equation}
+with which
+\begin{equation}
+\frac{\mathrm{d}x_{\mathrm{out}}^{(i)}}{\mathrm{d}t} = \frac{\mathrm{d}x_{\mathrm{in}}^{(i)}(t-T_i)}{\mathrm{d}t}\cdot\left(1-T_i'\right)
+\end{equation}
+Thus,
+\begin{equation}
+v_{\mathrm{r,out}}^{(i)} =
+\frac{\mathrm{d}x_{\mathrm{r,out}}^{(i)}}{\mathrm{d}t} = \frac{\mathrm{d}x_{\mathrm{r,in}}^{(i)}(t-T_i)}{\mathrm{d}t}\cdot\left(1-T_i'\right)
+\end{equation}
+\begin{equation}
+v_{\mathrm{ir,out}}^{(i)} =
+\frac{\mathrm{d}x_{\mathrm{ir,out}}^{(i)}}{\mathrm{d}t} = \frac{\mathrm{d}x_{\mathrm{ir,in}}^{(i)}(t-T_i)}{\mathrm{d}t}\cdot\left(1-T_i'\right)
+\end{equation}
+%
+\begin{equation}
+\mathbf{v}_{\mathrm{r,in}} = \mathbf{M}(\mathbf{I}-\mathbf{A})\cdot \mathbf{v}_{\mathrm{r,out}} + \mathbf{v}_{\mathrm{new}}
+\end{equation}
+
+\begin{equation}
+\mathbf{v}_{\mathrm{ir,in}} = \mathbf{M}\cdot \mathbf{v}_{\mathrm{ir,out}}
+\end{equation}
+where $\mathbf{A}=\mathrm{diag}(a_1,a_2,\ldots a_N)$ is the absorption matrix. For the $i$th road, assuming that the distance of each car to its destination follows normal distribution with a mean value of $\mu_i$ and a standard deviation of $\sigma_i$, we have $a_i=\Phi\left(\frac{l_i-\mu_i}{\sigma_i}\right)$, in which $\Phi$ is the CDF of standard normal distribution, and $l_i$ is the length of road $i$.
+\par For the $i$th road, the total number of rational cars is $x_{\mathrm{r}}^{(i)}(t)$ at time $t$. Suppose that the mean value and standard deviation of the distances of these cars to their destinations are $\mu^{(i)}(t)$ and $\sigma^{(i)}(t)$, respectively. Consider the case at time $t+\mathrm{d}t$. With Eqs.~ and , the number of rational cars is
+\begin{equation}
+\begin{aligned}
+\mathbf{x}_{\mathrm{r}}(t+\mathrm{d}t)
+& = \mathbf{x}_{\mathrm{r}} + \mathrm{d} \mathbf{x}_{\mathrm{r}} = \mathbf{x}_{\mathrm{r}} + \mathbf{v}_{\mathrm{r,in}}\mathrm{d}t - \mathbf{v}_{\mathrm{r,out}}\mathrm{d}t + \xi \mathbf{x}_{\rm{ir}}\mathrm{d}t  \\
+&=  \mathbf{x}_{\mathrm{r}} - \mathbf{v}_{\mathrm{r,out}}\mathrm{d}t + \mathbf{M}(\mathbf{I}-\mathbf{A})\cdot \mathbf{v}_{\mathrm{r,out}}\mathrm{d}t + (\mathbf{v}_{\mathrm{new}} +\xi \mathbf{x}_{\rm{ir}})\mathrm{d}t
+\end{aligned}
+\end{equation}
+
+\par For simplicity, we define a multiplication operator $\otimes$ and a division operation $\oslash$ as follows: for column vectors $\mathbf{a}=[a_1,a_2,\ldots a_n]^{\mathsf{T}}$ and $\mathbf{b}=[b_1,b_2,\ldots b_n]^{\mathsf{T}}$, $\mathbf{a}\otimes\mathbf{b}=[a_1b_1,a_2b_2,\ldots a_nb_n]^{\mathsf{T}}$, and $\mathbf{a}\oslash\mathbf{b}=[a_1/b_1,a_2/b_2,\ldots a_n/b_n]^{\mathsf{T}}$ if $\prod b_i\neq 0$. Obviously, $(\mathbf{a}\otimes\mathbf{b})\oslash \mathbf{b}=\mathbf{a}$.
+
+\par Let $\mathbf{u}(t)={\bm{\mu}}(t)\otimes \mathbf{x}_{\mathrm{r}}(t)$, and $\mathbf{s}(t)={\bm{\sigma}}(t)\otimes {\bm{\sigma}}(t)\otimes \mathbf{x}_{\mathrm{r}}(t)$. With Eq.,
+\begin{equation}\begin{aligned}
+\mathbf{u}' &= \frac{\mathbf{u}(t+\mathrm{d}t)-\mathbf{u}(t)}{\mathrm{d}t} \\
+&=  - \mathbf{u}\oslash \mathbf{x}_{\mathrm{r}} \otimes\mathbf{v}_{\mathrm{r,out}}+ \mathbf{M}(\mathbf{I}-\mathbf{A})\cdot \left[\mathbf{v}_{\mathrm{r,out}}\otimes(\mathbf{u}\oslash \mathbf{x}_{\mathrm{r}}-\mathbf{L})\right] + {\bm{\mu}_0}\otimes(\mathbf{v}_{\mathrm{new}} +\xi \mathbf{x}_{\rm{ir}})
+\end{aligned}
+\end{equation}
+Similarly,
+\begin{equation}
+\mathbf{s}' = - \mathbf{s}\oslash \mathbf{x}_{\mathrm{r}} \otimes\mathbf{v}_{\mathrm{r,out}}+ \mathbf{M}(\mathbf{I}-\mathbf{A})\cdot \left(\mathbf{v}_{\mathrm{r,out}}\otimes\mathbf{s}\oslash \mathbf{x}_{\mathrm{r}}\right) + {\bm{\sigma}_0^2}\otimes(\mathbf{v}_{\mathrm{new}} +\xi \mathbf{x}_{\rm{ir}})
+\end{equation}
+
+\begin{equation}
+p_{i,j,s}=\frac{\exp(-\theta (t_{ij}+t_{js}))}{\sum_{k\in V_i}\exp(-\theta (t_{ik}+t_{ks}))}, \forall j\in V_i
+\end{equation}
+
+\begin{equation}
+m_{ij}=\sum_{s} p_{i,j,s}\cdot w_{is}
+\end{equation}
+\section{Illustrative examples}
+In this section, we choose an earthquake-prone city, \textit{Tangshan}, China, to illustrate the proposed traffic modelling method. This city, lying in the north China seismic zone, suffered from a severe earthquake with a moment magnitude of 7.8 in July, 1976.  Feng et al \cite{Feng2017post} also selected this city to investigate the scenario-based post-earthquake performance of transportation network using an agent-based model, where the uncertainty associated with the earthquake hazard was not considered.
+\section{Preliminaries}
+
+\section{Post-earthquake performance assessment of transportation network}
+\section{Conclusions}
+
+\section*{Acknowledgements}
+The research described in this paper was supported by the National Key Research and Development Program of China (2016YFC0701404) and the Faculty of Engineering and IT PhD Research Scholarship (SC1911) from The University of Sydney. These supports are gratefully acknowledged.
+\section*{References}
+
+\bibliography{mybibfile}
+
+\end{document}
